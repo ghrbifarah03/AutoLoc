@@ -1,11 +1,11 @@
 package tn.esprit.farahgharbissa1.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -23,4 +23,9 @@ public class Agence {
     String ville;
     String adresse;
     String telephone;
+    @OneToMany(mappedBy = "agence", fetch = FetchType.EAGER) //ici fetch optional=> montrer comment forcer le changement (ToMany par defaut Lazy)
+    Set<Vehicule> vehicules;
+    @OneToMany(mappedBy = "agence")
+    Set<Employee> employees;
+
 }
